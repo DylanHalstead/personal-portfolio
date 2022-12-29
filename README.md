@@ -15,3 +15,23 @@ We will be racing to get a personal portfolio webapp (basically a resume) built 
   * https://www.youtube.com/watch?v=BZqzhmlTkAc&ab_channel=DeveloperFilip
   * https://www.youtube.com/@Hyperplexed
   * https://github.com/GorvGoyl/Clone-Wars
+
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+cd client
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
