@@ -1,22 +1,38 @@
 <template>
   <Navbar @toggle-hamburger="toggleHamburger" />
   <Home />
+  <Projects :projects="projects" />
 </template>
 
 <script>
 import Home from './components/Home.vue'
 import Navbar from './components/Navbar.vue'
+import Projects from './components/Projects.vue'
 
 export default {
   name: 'App',
   components: {
     Home,
-    Navbar
+    Navbar,
+    Projects
+  },
+  data() {
+    return {
+      projects: [],
+    }
   },
   methods: {
     toggleHamburger() {
-      document.querySelector('.nav-links').classList.toggle('active');
+      document.querySelector('.nav-links').classList.toggles('active');
+    },
+    async fetchProjects() {
+      const res = await fetch('http://localhost:5000/api/projects');
+      const data = await res.json();
+      return data;
     }
+  },
+  async created() {
+    this.projects = await this.fetchProjects();
   }
 }
 </script>
@@ -35,6 +51,4 @@ export default {
 body {
   background-color: #141414;
 }
-
-
 </style>

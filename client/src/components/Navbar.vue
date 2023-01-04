@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar">
       <div class="brand-container">
-        <img src="../../assets/img/Logo.png" alt="Logo.png" class="logo">
+        <img src="../../assets/logo.png" alt="Logo.png" class="logo">
         <div @click="$emit('toggle-hamburger')" class="hamburger">
           <span class="bar"></span>
           <span class="bar"></span>
