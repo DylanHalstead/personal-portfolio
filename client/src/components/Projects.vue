@@ -1,21 +1,24 @@
 <template>
+  <Tags :tags="tags" />
   <div class="projects-container">
-    <div :key="project.id" v-for="project in projects">
-      <Project :project="project" />
-    </div>
+    <Project v-for="project in projects" :key="project.id" :project="project" />
   </div>
 </template>
 
 <script>
 import Project from './Project.vue'
+import Tags from './Tags.vue'
+
 
 export default {
   name: "Projects", 
   props: {
-    projects: Array
+    projects: Array,
+    tags: Array
   },
   components: {
-    Project
+    Project,
+    Tags
   },
   emits: []
 }

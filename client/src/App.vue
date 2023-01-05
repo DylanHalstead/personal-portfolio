@@ -1,7 +1,7 @@
 <template>
   <Navbar @toggle-hamburger="toggleHamburger" />
   <Home />
-  <Projects :projects="projects" />
+  <Projects :projects="projects" :tags="tags" />
 </template>
 
 <script>
@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       projects: [],
+      tags: []
     }
   },
   methods: {
@@ -29,10 +30,16 @@ export default {
       const res = await fetch('http://localhost:5000/api/projects');
       const data = await res.json();
       return data;
+    },
+    async fetchTags() {
+      const res = await fetch('http://localhost:5000/api/tags');
+      const data = await res.json();
+      return data;
     }
   },
   async created() {
     this.projects = await this.fetchProjects();
+    this.tags = await this.fetchTags();
   }
 }
 </script>

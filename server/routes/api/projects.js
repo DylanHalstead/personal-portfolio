@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const projects = require('../../data/projects');
+const projects = require('../../data/projectsDB');
 
 // Get all projects
 router.get('/', (req, res) => {res.json(projects);});

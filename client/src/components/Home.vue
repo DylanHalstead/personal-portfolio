@@ -1,13 +1,11 @@
 <template>
-  <section id="home">
-    <div id="particles-js">
-      <div class="intro-text">
-        <h3 class="top-text">My name is</h3>
-        <h1 class="name">Dylan Halstead</h1>
-        <h3 class="bottom-text">I'm a software engineer student creating full-stack applications, exploring  computer science solutions, and building cool stuff.</h3>
-      </div>
+  <div id="particles-js">
+    <div class="intro-text">
+      <h3 class="top-text">My name is</h3>
+      <h1 class="name">Dylan Halstead</h1>
+      <h3 class="bottom-text">I'm a software engineer student creating full-stack applications, exploring  computer science solutions, and building cool stuff.</h3>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -134,7 +132,7 @@
   };
 </script>
 
-<style scoped>
+<style>
   #particles-js {
     background: #141414;
     width: 100vw;
