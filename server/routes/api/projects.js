@@ -1,15 +1,8 @@
 const express = require('express');
+const projectController = require('../../controllers/projectController');
+
 const router = express.Router();
-const projects = require('../../data/projectsDB');
 
-// Get all projects
-router.get('/', (req, res) => {res.json(projects);});
-
-// Grab a specific project
-router.get('/:id', (req, res) => {
-  res.json(projects.filter( (project) => {
-    return project.id == req.params.id
-  }))
-});
+router.get('/', projectController.getAllProjects);
 
 module.exports = router;

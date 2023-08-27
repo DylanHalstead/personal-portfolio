@@ -1,25 +1,8 @@
 const express = require('express');
+const tagController = require('../../controllers/tagController');
+
 const router = express.Router();
-const projects = require('../../data/projectsDB');
 
-// Get all unique tags
-router.get('/', (req, res) => {
-  let tags = []
-  projects.forEach( project => {
-    project.tags.forEach( tag => {
-      let foundTag = true
-      tags.forEach( definedTag => {
-        if(tag.name == definedTag.name){
-          foundTag = false
-        }
-      });
-      if(foundTag){
-        tags.push(tag)
-      }
-    });
-  });
-
-  res.json(tags);
-});
+router.get('/', tagController.getAllTags);
 
 module.exports = router;
