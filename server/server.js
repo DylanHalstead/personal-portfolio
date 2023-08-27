@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path'); // Add this line
 const sequelize = require('./config/database');
 
 const app = express();
@@ -18,6 +19,13 @@ const app = express();
 
     app.use('/api/projects', require('./routes/api/projects'));
     app.use('/api/tags', require('./routes/api/tags'));
+
+    // Grab from dist folder
+    const distDir = path.join(__dirname, '../client/dist');
+    app.use(express.static(distDir));
+    app.get('/', (req, res) => {
+      res.sendFile(path.join(distDir, 'index.html'));
+    });
 
     const BACKEND_PORT = process.env.BACKEND_PORT || 5000;
     app.listen(BACKEND_PORT, () => {
