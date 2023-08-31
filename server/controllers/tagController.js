@@ -2,7 +2,7 @@ const { Tag } = require('../models/index');
 
 exports.getAllTags = async (req, res) => {
   try {
-    const tags = await Tag.findAll();
+    const tags = await Tag.findAll({ order: [['id', 'DESC']] });
     res.json(tags);
   } catch (error) {
     console.error('An error occurred while fetching projects.', error);

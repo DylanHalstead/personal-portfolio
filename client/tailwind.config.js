@@ -10,6 +10,7 @@ module.exports = {
         secondary: colors.secondary,
         background: colors.background,
         light: colors.light,
+        lightShadow: colors.lightShadow,
         accent: colors.accent
       },
       fontFamily: {

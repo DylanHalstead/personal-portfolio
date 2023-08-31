@@ -20,11 +20,11 @@
                 v-if="project.img_url"
                 :src="project.img_url"
                 :alt="`${project.name} Picture`"
-                class="w-full h-72 object-cover rounded-t-md"
+                class="w-full md:h-72 h-48 object-cover rounded-t-md"
               />
               <div
                 v-else
-                class="w-full h-72 bg-gradient-to-r from-accent to-primary rounded-t-md"
+                class="w-full md:h-72 h-48 bg-gradient-to-r from-accent to-primary rounded-t-md"
               ></div>
               <button
                 class="absolute top-0 right-0 flex justify-end opacity-50 hover:opacity-100 transition-opacity ease-in-out duration-200 m-4"
@@ -36,7 +36,7 @@
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-8 h-8"
+                  class="h-8"
                 >
                   <path
                     stroke-linecap="round"
@@ -46,7 +46,7 @@
                 </svg>
               </button>
               <div class="flex flex-col absolute bottom-8 left-6">
-                <h2 class="w-full font-nunito-sans font-semibold text-6xl mb-2">
+                <h2 class="w-full font-nunito-sans font-semibold md:text-6xl text-4xl mb-2">
                   {{ project.name }}
                 </h2>
                 <div class="flex">
@@ -56,7 +56,7 @@
                     class="opacity-50 hover:opacity-100 transition-opacity ease-in-out duration-200 mr-2"
                     target="_blank"
                   >
-                    <svg viewBox="0 0 128 128" fill="currentColor" class="w-6 h-6">
+                    <svg viewBox="0 0 128 128" fill="currentColor" class="h-5 md:h-6">
                       <g>
                         <path
                           fill-rule="evenodd"
@@ -81,7 +81,7 @@
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      class="w-6 h-6"
+                      class="h-5 md:h-6"
                     >
                       <path
                         stroke-linecap="round"
@@ -94,7 +94,9 @@
               </div>
             </div>
             <div class="mx-6 my-4">
-              <p class="text-lg">{{ project.description }}</p>
+              <p class="md:text-lg text-xs max-h-80 overflow-y-scroll">
+                {{ project.description }}
+              </p>
               <ul class="pb-4 flex flex-wrap text-light overflow-scroll my-2">
                 <li v-for="tag in project.tags" :key="tag.id" class="my-1 mr-4">
                   <div class="flex items-center whitespace-nowrap py-1 rounded-full">
@@ -103,9 +105,11 @@
                       v-html="tag.inner_svg"
                       fill="currentColor"
                       stroke="currentColor"
-                      class="h-5 mr-1.5"
+                      class="md:h-5 h-4 md:mr-1.5 mr-1"
                     ></svg>
-                    <p class="font-semibold font-nunito-sans text-sm">{{ tag.name }}</p>
+                    <p class="font-semibold md:text-sm text-xs font-nunito-sans">
+                      {{ tag.name }}
+                    </p>
                   </div>
                 </li>
               </ul>
@@ -138,7 +142,7 @@
 // import { watch, computed } from 'vue'
 
 defineEmits(['close-modal'])
-const props = defineProps({
+defineProps({
   project: { type: Object, required: true },
   modalActive: {
     type: Boolean,

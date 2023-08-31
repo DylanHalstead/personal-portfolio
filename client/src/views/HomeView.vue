@@ -7,23 +7,26 @@
 
 <script setup>
 import axios from 'axios'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import LandingBanner from '../components/LandingBanner.vue'
 import ProjectsSection from '../components/ProjectsSection.vue'
 
 const projects = ref([])
-const tags = ref([])
-
 const getProjects = async () => {
-  await axios.get('/api/projects').then((res) => {
+  await axios.get('http://localhost:5000/api/projects').then((res) => {
     projects.value = res.data
   })
 }
+
+const tags = ref([])
 const getTags = async () => {
-  await axios.get('/api/tags').then((res) => {
+  await axios.get('http://localhost:5000/api/tags').then((res) => {
     tags.value = res.data
   })
 }
-getProjects()
-getTags()
+
+onMounted(() => {
+  getProjects()
+  getTags()
+})
 </script>
