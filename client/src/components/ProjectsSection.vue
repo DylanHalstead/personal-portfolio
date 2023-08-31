@@ -16,10 +16,8 @@
       ></div>
       <ul
         @scroll="tagScrollHandler"
-        @touchstart="tagTouchStartHandler"
-        @touchmove="tagTouchMoveHandler"
         ref="tagsWrapper"
-        class="list-none flex overflow-x-scroll md:mb-6 mb-4 text-light box-border no-scrollbar scroll-smooth w-full"
+        class="list-none flex flex-auto overflow-x-scroll md:mb-6 md:p-0 mb-0 p-8 text-light box-border no-scrollbar scroll-smooth w-full"
       >
         <li v-for="tag in tags" :key="tag.id">
           <Tag :tag="tag" />
@@ -53,22 +51,5 @@ const startX = ref(null)
 const tagScrollHandler = (e) => {
   scrollAmt.value = e.target.scrollLeft
   maxScrollLeft.value = tagsWrapper.value.scrollWidth - tagsWrapper.value.clientWidth
-}
-
-const tagTouchStartHandler = (e) => {
-  startX.value = e.touches[0].clientX
-  console.log(startX.value)
-}
-
-const tagTouchMoveHandler = (e) => {
-  const currentX = e.touches[0].clientX
-  const deltaX = currentX - startX.value
-
-  tagsWrapper.value.scrollLeft -= deltaX
-  startX.value = currentX
-  console.log(deltaX.value)
-  console.log(currentX.value)
-
-  e.preventDefault()
 }
 </script>
