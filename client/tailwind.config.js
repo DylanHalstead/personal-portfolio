@@ -9,9 +9,7 @@ module.exports = {
         primary: colors.primary,
         secondary: colors.secondary,
         background: colors.background,
-        light: colors.light,
-        lightShadow: colors.lightShadow,
-        accent: colors.accent
+        light: colors.light
       },
       fontFamily: {
         martel: ['Martel'],

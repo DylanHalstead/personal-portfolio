@@ -19,8 +19,13 @@
           {{ project.name }}
         </h2>
       </div>
-      <ul class="flex text-light opacity-50 py-2 rounded-b-md bg-secondary">
-        <li v-for="tag in displayedTags" :key="tag.id" class="mx-2">
+      <ul class="flex text-light py-2 rounded-b-md bg-secondary">
+        <li
+          v-for="tag in displayedTags"
+          :key="tag.id"
+          class="mx-2"
+          :class="selectedTagsIds.includes(tag.id) ? 'text-primary' : 'opacity-50'"
+        >
           <svg
             class="md:h-6 h-4"
             viewBox="0 0 128 128"
@@ -28,7 +33,10 @@
             fill="currentColor"
           ></svg>
         </li>
-        <li v-if="removedTags" class="mx-2 md:h-6 md:text-base text-sm h-4 font-nunito-sans">
+        <li
+          v-if="removedTags"
+          class="mx-2 md:h-6 md:text-base text-sm h-4 font-nunito-sans opacity-50"
+        >
           {{ `+${removedTags}` }}
         </li>
       </ul>
@@ -38,8 +46,13 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import ProjectModal from './ProjectModal.vue'
+
+const props = defineProps({
+  project: { type: Object, required: true },
+  selectedTagsIds: { type: Array, required: false, default: () => [] }
+})
 
 const maxDisplayableTags = 8
 const removedTags = ref(0)
@@ -64,8 +77,4 @@ const modalActive = ref(false)
 const toggleModal = () => {
   modalActive.value = !modalActive.value
 }
-
-const props = defineProps({
-  project: { type: Object, required: true }
-})
 </script>

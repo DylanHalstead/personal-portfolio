@@ -13,7 +13,7 @@
           v-if="modalActive"
           class="fixed max-w-5xl w-full top-1/2 transform -translate-y-1/2 z-20 p-8 m-8"
         >
-          <div class="bg-background rounded-lg shadow-md box-border text-light">
+          <div class="bg-secondary rounded-lg shadow-md box-border text-light">
             <div class="relative">
               <div class="absolute inset-0 w-full h-full bg-black opacity-70 rounded-t-md"></div>
               <img
@@ -24,7 +24,7 @@
               />
               <div
                 v-else
-                class="w-full md:h-72 h-48 bg-gradient-to-r from-accent to-primary rounded-t-md"
+                class="w-full md:h-72 h-48 bg-gradient-to-r from-primary from-30% to-secondary rounded-t-md"
               ></div>
               <button
                 class="absolute top-0 right-0 flex justify-end opacity-50 hover:opacity-100 transition-opacity ease-in-out duration-200 m-4"
@@ -139,8 +139,6 @@
 </template>
 
 <script setup>
-// import { watch, computed } from 'vue'
-
 defineEmits(['close-modal'])
 defineProps({
   project: { type: Object, required: true },
@@ -149,20 +147,4 @@ defineProps({
     default: false
   }
 })
-
-// const isModalActive = computed(() => {
-//   return props.modalActive
-// })
-
-// watch(isModalActive, (newVal) => {
-//   toggleScroll(newVal)
-// })
-
-// const toggleScroll = (isActive) => {
-//   if (isActive) {
-//     document.body.style.overflow = 'hidden'
-//   } else {
-//     document.body.style.overflow = 'auto'
-//   }
-// }
 </script>

@@ -1,6 +1,10 @@
 <template>
   <div
-    class="flex items-center whitespace-nowrap mr-3 md:px-3 md:py-2 px-2 py-1 rounded-full border-light md:border-2 border hover:cursor-pointer"
+    class="flex items-center whitespace-nowrap mr-3 px-3 py-2 rounded-full border-light md:border-2 border hover:cursor-pointer transition-all duration-200 ease-in-out"
+    :class="
+      selectedTagsIds.includes(tag.id) ? 'bg-primary border-primary text-background opacity-90' : ''
+    "
+    @click="$emit('tag-clicked', tag.id)"
   >
     <svg
       viewBox="0 0 128 128"
@@ -15,6 +19,7 @@
 
 <script setup>
 defineProps({
-  tag: { type: Object, required: true }
+  tag: { type: Object, required: true },
+  selectedTagsIds: { type: Array, required: false, default: () => [] }
 })
 </script>
