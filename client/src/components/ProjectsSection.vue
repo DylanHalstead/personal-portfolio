@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center mx-auto mt-12">
-    <h2 class="md:text-5xl text-3xl mb-4 font-nunito-sans font-semibold">Projects</h2>
+    <h2 class="md:text-5xl text-3xl md:mb-6 mb-4 font-nunito-sans font-semibold">Projects</h2>
     <div class="relative overflow-hidden w-4/5">
       <div
         class="absolute inset-0 w-full h-full bg-gradient-to-r from-background via-transparent via-10% pointer-events-none transition-opacity ease-in duration-200"

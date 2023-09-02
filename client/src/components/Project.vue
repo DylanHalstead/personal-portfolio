@@ -8,7 +8,7 @@
         <div
           class="absolute inset-0 w-full h-full bg-gradient-to-t from-black via-transparent via-30% opacity-70 z-10"
         ></div>
-        <div class="md:h-56 md:w-96 overflow-hidden">
+        <div class="h-56 md:w-96 overflow-hidden">
           <img
             :src="project.img_url ? project.img_url : '/default_project.png'"
             :alt="`${project.name} Picture`"
@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 import ProjectModal from './ProjectModal.vue'
 
 const props = defineProps({
