@@ -5,7 +5,7 @@ CREATE TABLE projects (
     img_url VARCHAR(255) NULL,
     deployment_url  VARCHAR(255) NULL,
     github_url  VARCHAR(255) NULL,
-    starred BOOLEAN NOT NULL DEFAULT FALSE,
+    starred BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE tags (
@@ -17,5 +17,5 @@ CREATE TABLE tags (
 CREATE TABLE project_tags (
     project_id INTEGER REFERENCES projects(id),
     tag_id INTEGER REFERENCES tags(id),
-    starred BOOLEAN NOT NULL DEFAULT FALSE,
+    starred BOOLEAN NOT NULL DEFAULT FALSE
 );
