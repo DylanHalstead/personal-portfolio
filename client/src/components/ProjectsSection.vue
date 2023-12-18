@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center mx-auto mt-12">
+  <div class="flex flex-col items-center mx-auto mt-12 pb-16">
     <h2 class="md:text-5xl text-3xl md:mb-6 mb-4 font-nunito-sans font-semibold">Projects</h2>
     <div v-if="isLoaded" class="relative overflow-hidden w-4/5">
       <div

@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-screen bg-background border-background background text-light font-martel">
+  <div
+    class="min-h-screen relative bg-background border-background background text-light font-martel"
+  >
     <RouterView />
     <Footer />
   </div>
