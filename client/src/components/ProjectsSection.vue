@@ -50,11 +50,12 @@ const tagScrollHandler = (e) => {
 }
 
 const isLoaded = ref(false)
+const apiUri = import.meta.env.VITE_API_URI || ''
 
 const projects = ref([])
 const getProjects = async () => {
   await axios
-    .get('http://127.0.0.1:5000/api/projects')
+    .get(`${apiUri}/api/projects`)
     .then((res) => {
       projects.value = res.data
     })
@@ -71,7 +72,7 @@ const getProjects = async () => {
 const tags = ref([])
 const getTags = async () => {
   await axios
-    .get('http://127.0.0.1:5000/api/tags')
+    .get(`${apiUri}/api/tags`)
     .then((res) => {
       tags.value = res.data
     })
