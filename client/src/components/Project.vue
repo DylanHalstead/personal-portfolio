@@ -1,7 +1,7 @@
 <template>
   <div
     class="w-full hover:cursor-pointer rounded-md transform hover:-translate-y-2 border bg-gray-300 border-gray-300 dark:bg-gray-700 dark:border-gray-700 ease-in-out transition-transform duration-500"
-    @click="toggleModal"
+    @click="emit('project-clicked', project)"
   >
     <div class="relative">
       <div
@@ -39,18 +39,18 @@
         {{ `+${removedTagsLength}` }}
       </li>
     </ul>
-    <ProjectModal :project="project" :modalActive="modalActive" @close-modal="toggleModal" />
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref, watch } from 'vue'
-import ProjectModal from './ProjectModal.vue'
 
 const props = defineProps({
   project: { type: Object, required: true },
   selectedTagsIds: { type: Array, required: false, default: () => [] }
 })
+
+const emit = defineEmits(['project-clicked'])
 
 const maxDisplayableTags = 8
 const removedTagsLength = ref(0)
@@ -89,9 +89,4 @@ watch(
     displayedTagsHandler()
   }
 )
-
-const modalActive = ref(false)
-const toggleModal = () => {
-  modalActive.value = !modalActive.value
-}
 </script>

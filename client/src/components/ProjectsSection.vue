@@ -27,10 +27,19 @@
       </div>
       <ul class="list-none md:px-6 md:mx-16 flex flex-wrap justify-center">
         <li class="m-4 w-full md:w-auto" v-for="project in shownProjects" :key="project.id">
-          <Project :project="project" :selectedTagsIds="selectedTagsIds" />
+          <Project
+            :project="project"
+            :selectedTagsIds="selectedTagsIds"
+            @project-clicked="toggleModal"
+          />
         </li>
       </ul>
       <Pagination :itemsPerPage="6" :totalItems="projects.length" @change-page="changePage" />
+      <ProjectModal
+        :project="currentProject"
+        :modalActive="modalActive"
+        @close-modal="toggleModal"
+      />
     </slot>
     <Spinner v-else />
   </div>
@@ -40,6 +49,7 @@
 import { ref, watch, onMounted } from 'vue'
 import axios from 'axios'
 import Project from './Project.vue'
+import ProjectModal from './ProjectModal.vue'
 import Tag from './Tag.vue'
 import Spinner from './Spinner.vue'
 import Pagination from './Pagination.vue'
@@ -120,5 +130,16 @@ watch(selectedTagsIds, () => {
 
 const changePage = (page) => {
   shownProjects.value = projects.slice((page - 1) * projectsPerPage, page * projectsPerPage)
+}
+
+const modalActive = ref(false)
+const currentProject = ref({})
+const toggleModal = (project) => {
+  if (project) {
+    currentProject.value = project
+  } else {
+    currentProject.value = {}
+  }
+  modalActive.value = !modalActive.value
 }
 </script>
