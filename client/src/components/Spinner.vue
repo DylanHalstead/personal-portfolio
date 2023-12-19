@@ -1,9 +1,9 @@
 <template>
-  <div role="status" v-if="isActive">
+  <div role="status">
     <svg
       aria-hidden="true"
-      class="text-light animate-spin dark:text-gray-600 fill-primary"
-      :class="`w-${size} h-${size}`"
+      :class="sizeMapping[size]"
+      class="text-light animate-spin dark:text-gray-600 fill-primary w-"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,15 @@
 
 <script setup>
 defineProps({
-  size: { type: Number, required: false, default: () => 24 },
-  isActive: { type: Boolean, required: false, default: () => false }
+  size: { type: Number, required: false, default: () => 24 }
 })
+
+// https://tailwindcss.com/docs/content-configuration#dynamic-class-names
+const sizeMapping = {
+  12: 'w-12 h-12',
+  16: 'w-16 h-16',
+  24: 'w-24 h-24',
+  32: 'w-32 h-32',
+  48: 'w-48 h-48'
+}
 </script>
