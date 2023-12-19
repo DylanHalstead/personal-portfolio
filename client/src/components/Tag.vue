@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center whitespace-nowrap mr-3 px-3 py-2 rounded-full border-light md:border-2 border hover:cursor-pointer transition-all duration-200 ease-in-out"
+    class="flex items-center whitespace-nowrap mr-3 px-3 py-2 rounded-full hover:border-primary border-light md:border-2 border hover:cursor-pointer transition-all duration-150 ease-in-out"
     :class="
       selectedTagsIds.includes(tag.id) ? 'bg-primary border-primary text-background opacity-90' : ''
     "

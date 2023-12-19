@@ -1,17 +1,17 @@
 <template>
-  <div>
+  <div class="font-nunito-sans">
     <div class="flex flex-col items-center mb-2">
       <span class="text-sm text-gray-700 dark:text-gray-400">
         Showing
-        <span class="font-semibold text-gray-900 dark:text-white">{{
+        <span class="font-semibold text-gray-900 dark:text-light">{{
           (currentPage - 1) * itemsPerPage + 1
         }}</span>
         to
-        <span class="font-semibold text-gray-900 dark:text-white">{{
+        <span class="font-semibold text-gray-900 dark:text-light">{{
           Math.min(currentPage * itemsPerPage, totalItems)
         }}</span>
         of
-        <span class="font-semibold text-gray-900 dark:text-white">{{ totalItems }}</span>
+        <span class="font-semibold text-gray-900 dark:text-light">{{ totalItems }}</span>
         Entries
       </span>
     </div>
@@ -21,7 +21,7 @@
         <li>
           <button
             href="#"
-            class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-light border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-light transition-all duration-200 ease-in-out"
             @click="changePage(currentPage - 1)"
           >
             <span class="sr-only">Previous</span>
@@ -45,11 +45,11 @@
         <li v-for="page in Array(totalPages).keys()" :key="page">
           <button
             href="#"
-            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            class="flex items-center justify-center px-4 h-10 leading-tight border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-light transition-all duration-200 ease-in-out"
             :class="
               page + 1 === currentPage
-                ? 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-white'
-                : ''
+                ? 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-light'
+                : 'bg-light text-gray-500 dark:bg-gray-900 dark:text-gray-400'
             "
             @click="changePage(page + 1)"
           >
@@ -60,7 +60,7 @@
         <li>
           <button
             href="#"
-            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-light border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-light transition-all duration-200 ease-in-out"
             @click="changePage(currentPage + 1)"
           >
             <span class="sr-only">Next</span>
@@ -98,7 +98,7 @@ const emit = defineEmits(['change-page'])
 const totalPages = ref(Math.ceil(props.totalItems / props.itemsPerPage))
 let currentPage = ref(1)
 const changePage = (page) => {
-  if (page < 1 || page > props.totalPages) return
+  if (page < 1 || page > totalPages.value) return
   currentPage.value = page
   emit('change-page', page)
 }
