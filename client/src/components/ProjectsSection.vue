@@ -108,19 +108,6 @@ const tagClickedHandler = (tagId) => {
 }
 
 watch(selectedTagsIds, () => {
-  projects.forEach((project) => {
-    project.tags = project.tags.sort((a, b) => {
-      const aInSelected = selectedTagsIds.value.includes(a.id)
-      const bInSelected = selectedTagsIds.value.includes(b.id)
-      if (aInSelected && !bInSelected) {
-        return -1
-      } else if (!aInSelected && bInSelected) {
-        return 1
-      } else {
-        return 0
-      }
-    })
-  })
   // Find projects which include all selected tags
   projects.sort((a, b) => {
     const aTags = a.tags.map((tag) => tag.id)
@@ -129,7 +116,6 @@ watch(selectedTagsIds, () => {
     const bTagsInSelected = bTags.filter((tag) => selectedTagsIds.value.includes(tag))
     return bTagsInSelected.length - aTagsInSelected.length
   })
-  shownProjects.value = projects.slice(0, projectsPerPage)
 })
 
 const changePage = (page) => {

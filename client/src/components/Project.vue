@@ -34,10 +34,10 @@
           ></svg>
         </li>
         <li
-          v-if="removedTags"
+          v-if="removedTagsLength"
           class="mx-2 md:h-6 md:text-base text-sm h-4 font-nunito-sans opacity-50"
         >
-          {{ `+${removedTags}` }}
+          {{ `+${removedTagsLength}` }}
         </li>
       </ul>
       <ProjectModal :project="project" :modalActive="modalActive" @close-modal="toggleModal" />
@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import ProjectModal from './ProjectModal.vue'
 
 const props = defineProps({
@@ -55,23 +55,42 @@ const props = defineProps({
 })
 
 const maxDisplayableTags = 8
-const removedTags = ref(0)
+const removedTagsLength = ref(0)
 const displayedTags = ref([])
 const displayedTagsHandler = () => {
+  const sortedTags = [...props.project.tags].sort((a, b) => {
+    const aInSelected = props.selectedTagsIds.includes(a.id)
+    const bInSelected = props.selectedTagsIds.includes(b.id)
+    if (aInSelected && !bInSelected) {
+      return -1
+    } else if (!aInSelected && bInSelected) {
+      return 1
+    } else {
+      return 0
+    }
+  })
+
   if (
     props.project.tags.length > maxDisplayableTags &&
     props.project.tags.length != maxDisplayableTags + 1
   ) {
-    removedTags.value = props.project.tags.length - maxDisplayableTags
-    displayedTags.value = props.project.tags.slice(0, maxDisplayableTags)
+    removedTagsLength.value = sortedTags.length - maxDisplayableTags
+    displayedTags.value = sortedTags.slice(0, maxDisplayableTags)
   } else {
-    displayedTags.value = props.project.tags
+    displayedTags.value = sortedTags
   }
 }
 
 onMounted(() => {
   displayedTagsHandler()
 })
+
+watch(
+  () => props.selectedTagsIds,
+  () => {
+    displayedTagsHandler()
+  }
+)
 
 const modalActive = ref(false)
 const toggleModal = () => {
