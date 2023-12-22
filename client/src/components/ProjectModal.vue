@@ -97,6 +97,9 @@
               <p class="md:text-lg text-xs max-h-80 overflow-y-scroll">
                 {{ project.description }}
               </p>
+              <hr
+                class="w-48 h-1 mx-auto my-2 bg-gray-100 border-0 rounded md:my-4 dark:bg-gray-500"
+              />
               <ul class="pb-4 flex flex-wrap text-light overflow-scroll my-2">
                 <li v-for="tag in project.tags" :key="tag.id" class="my-1 mr-4">
                   <div class="flex items-center whitespace-nowrap py-1 rounded-full">

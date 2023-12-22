@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center mx-auto mt-12 pb-24">
     <h2 class="md:text-5xl text-3xl md:mb-6 mb-4 font-nunito-sans font-semibold">Projects</h2>
-    <slot v-if="isLoaded">
+    <slot v-if="isLoaded && !errorOccurred">
       <div class="relative overflow-hidden w-4/5">
         <div
           class="absolute inset-0 w-full h-full bg-gradient-to-r from-background via-transparent via-10% pointer-events-none transition-opacity ease-in duration-200"
@@ -41,6 +41,14 @@
         @close-modal="toggleModal"
       />
     </slot>
+    <div v-else-if="errorOccurred" class="mt-6 text-center text-red-500 dark:text-red-400">
+      <p>An error occurred while fetching my projects :(</p>
+      <p>
+        Please try again later (and
+        <a href="mailto:dylanhalstead11@gmail.com" class="underline">email me</a> if a continous
+        issue!)
+      </p>
+    </div>
     <Spinner v-else />
   </div>
 </template>
@@ -63,12 +71,13 @@ const tagScrollHandler = (e) => {
   maxScrollLeft.value = tagsWrapper.value.scrollWidth - tagsWrapper.value.clientWidth
 }
 
-const isLoaded = ref(false)
 const apiUri = import.meta.env.VITE_API_URI || ''
 const projectsPerPage = 6
 
 let projects = []
 const shownProjects = ref([])
+const isLoaded = ref(false)
+const errorOccurred = ref(false)
 const getProjects = async () => {
   await axios
     .get(`${apiUri}/api/projects`)
@@ -78,6 +87,7 @@ const getProjects = async () => {
     })
     .catch((err) => {
       console.log(err)
+      errorOccurred.value = true
     })
     .finally(() => {
       setTimeout(() => {
@@ -95,6 +105,7 @@ const getTags = async () => {
     })
     .catch((err) => {
       console.log(err)
+      errorOccurred.value = true
     })
     .finally(() => {
       setTimeout(() => {
@@ -118,7 +129,6 @@ const tagClickedHandler = (tagId) => {
 }
 
 watch(selectedTagsIds, () => {
-  // Find projects which include all selected tags
   projects.sort((a, b) => {
     const aTags = a.tags.map((tag) => tag.id)
     const bTags = b.tags.map((tag) => tag.id)
@@ -126,6 +136,7 @@ watch(selectedTagsIds, () => {
     const bTagsInSelected = bTags.filter((tag) => selectedTagsIds.value.includes(tag))
     return bTagsInSelected.length - aTagsInSelected.length
   })
+  shownProjects.value = projects.slice(0, projectsPerPage)
 })
 
 const changePage = (page) => {

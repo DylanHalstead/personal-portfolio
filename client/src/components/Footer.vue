@@ -2,7 +2,7 @@
   <div
     class="absolute bottom-0 w-full bg-secondary px-6 py-4 mt-8 flex items-center flex-col-reverse md:flex-row md:justify-between"
   >
-    <p class="text-sm font-nunito-sans">©2023 Dylan Halstead. All rights reserved.</p>
+    <p class="text-sm font-nunito-sans">©2024 Dylan Halstead. All rights reserved.</p>
     <ul class="flex md:mb-0 mb-2">
       <li class="ml-4">
         <a href="mailto:dylanhalstead11@gmail.com">
@@ -49,5 +49,3 @@
     </ul>
   </div>
 </template>
-
-<script setup></script>
