@@ -79,7 +79,7 @@ const shownProjects = ref([])
 const isLoaded = ref(false)
 const errorOccurred = ref(false)
 const getProjects = async () => {
-  await axios
+  axios
     .get(`${apiUri}/api/projects`)
     .then((res) => {
       projects = res.data
@@ -98,7 +98,7 @@ const getProjects = async () => {
 
 const tags = ref([])
 const getTags = async () => {
-  await axios
+  axios
     .get(`${apiUri}/api/tags`)
     .then((res) => {
       tags.value = res.data

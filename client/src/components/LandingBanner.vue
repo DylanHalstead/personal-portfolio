@@ -8,8 +8,8 @@
         Dylan Halstead
       </h1>
       <h2 class="text-light lg:text-xl md:text-lg text-xs">
-        I'm a software engineer student creating full-stack applications, exploring computer science
-        solutions, and building cool stuff.
+        I'm a software engineer trying to learn as much as possible about the SWE landscape.
+        Creating full-stack applications, exploring software solutions, and building cool stuff.
       </h2>
     </div>
     <div id="jparticles" class="bg-background w-full h-full overflow-hidden"></div>
